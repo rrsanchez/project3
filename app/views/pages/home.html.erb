@@ -1,0 +1,20 @@
+<h1>Rafael Sanchez</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Projects</th>
+			<th>Description</th>
+			<th>URL</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% PROJECTS.each do |project, data| %>
+			<tr>
+				<td><%= project %></td>
+				<td><%= data['description'] %></td>
+				<td><%= link_to data['url'] %></td>
+			</tr>
+		<% end %>	
+	</tbody>
+</table>
