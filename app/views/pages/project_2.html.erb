@@ -1,2 +1,14 @@
-<h1>Pages#project_2</h1>
-<p>Find me in app/views/pages/project_2.html.erb</p>
+<h2>Steps for Project 2</h2>
+<p>
+- added the gem 'bootstrap-sass' in the Gemfile
+<br>
+- ran the command "gem install twitter-bootstrap-rails"
+<br>
+- the file app/assets/javascripts/application.js is modified to add the bootstrap's javascript files
+<br>
+- in routes.rb, get '/pages/project_2' is added for a new web page
+<br>
+- in app/views/pages/home.html.erb, data['url'] is added next to link_to data to connect the url to the newly created webpage
+<br>
+- in config/environments/production.rb file, config.assets.compile is set to true in order to allow CSS on Heroku
+</p>
