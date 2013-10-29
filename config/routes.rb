@@ -1,7 +1,7 @@
 Project2::Application.routes.draw do
     root :to => 'pages#home';
     get '/pages/project_2'
-    get '/pages/project_3'
+    get '/pages/calendar'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
