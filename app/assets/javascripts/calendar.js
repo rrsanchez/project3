@@ -128,7 +128,7 @@ function addEvent(day, month, year){
 
 		$.ajax({
 			type: "POST",
-    			url : "/appointments",
+    		url : "/appointments",
 			data: JSON.stringify({"appointment": {"year": year, "month": month+1, "day": day, "time": time_t.value, "description": dt.value}}),
 			contentType: 'application/json',
 			dataType : 'json'
