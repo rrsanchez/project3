@@ -1,5 +1,3 @@
-
-
 var count_year = 0;
 var count_month = 0;
 
@@ -93,9 +91,9 @@ while (i <= dayAmount){
 
     // Creates the cell for the current date
     if (  (i == day) && (month == current.getMonth() ) && (year == current.getFullYear())  ){
-        padding +="<td height='50' class='currentday' bgcolor=\"#d9d9d9\" onMouseOver='this.style.background=\"#989898\"; this.style.color=\"#000000\"' onMouseOut='this.style.background=\"#D9D9D9\"; this.style.color=\"#000000\"' button id=\"btn"+i+"\" class=\"button_current_day\"  onclick =\"addEvent("+i+")\"><font color='black'>"+i+"</font><ul id=\"ul_"+i+"\"></ul></td>";
+        padding +="<td height='50' class='currentday' bgcolor=\"#d9d9d9\" onMouseOver='this.style.background=\"#989898\"; this.style.color=\"#000000\"' onMouseOut='this.style.background=\"#D9D9D9\"; this.style.color=\"#000000\"' button id=\"btn"+i+"\" class=\"button_current_day\"  onclick =\"addEvent("+i+", "+month+","+year+")\"><font color='black'>"+i+"</font><ul id=\"ul_"+i+"\"></ul></td>";
     }else{  // All the other days
-        padding +="<td height='50' class='currentmonth' onMouseOver='this.style.background=\"#989898\"' onMouseOut='this.style.background=\"#FFFFFF\"' button id=\"btn"+i+"\" onclick=\"addEvent("+i+")\"><font color='gray'>"+i+"</font> <ul id=\"ul_"+i+"\"></ul></td>";    
+        padding +="<td height='50' class='currentmonth' onMouseOver='this.style.background=\"#989898\"' onMouseOut='this.style.background=\"#FFFFFF\"' button id=\"btn"+i+"\" onclick=\"addEvent("+i+", "+month+","+year+")\"><font color='gray'>"+i+"</font> <ul id=\"ul_"+i+"\"></ul></td>";    
 
     }    
     tempweekday2++;
@@ -108,22 +106,42 @@ while (i <= dayAmount){
  calendarTable += "<tr height='50'>";
  calendarTable += padding;
  calendarTable += "</tr></table>";
- document.getElementById("calendar").innerHTML=calendarTable;
 
+
+$.getJSON("/appointments",function(data){
+	for (var i=0; i<data.length; i++) {
+		if(data[i].year == year && data[i].month-1 == month){
+			$("#ul_"+data[i].day).append(data[i].time + "<br>" + data[i].description);
+		}
+	}
+});	
+	
+ document.getElementById("calendar").innerHTML=calendarTable;
 }
 
+
+
 // Adds an event 
-function addEvent(list_number){
-    if(!dt.value==""){
-        $("#ul_"+list_number).append("<li>"+ time_t.value +" "+ dt.value + "</li>");
-        dt.value="";
-        time_t.value="00:00";
-    }else  {
-	var field = prompt("Please enter the description: ");
+function addEvent(day, month, year){
+	if(!dt.value==""){
+        	$("#ul_"+day).append("<li>"+ time_t.value +" "+ dt.value + "</li>");
+
+		$.ajax({
+			type: "POST",
+    			url : "/appointments",
+			data: JSON.stringify({"appointment": {"year": year, "month": month+1, "day": day, "time": time_t.value, "description": dt.value}}),
+			contentType: 'application/json',
+			dataType : 'json'
+		});
+
+        	dt.value="";
+        	time_t.value="00:00";
+
+    	}else{
+	var field = "";
 	while (field=="") {
 		field = prompt("Please enter the description: ");
 	}
 	dt.value=field;
     }   
-
 }

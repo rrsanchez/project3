@@ -1,4 +1,5 @@
 Project2::Application.routes.draw do
+  resources :appointments
     root :to => 'pages#home';
     get '/pages/project_2'
     get '/pages/calendar'

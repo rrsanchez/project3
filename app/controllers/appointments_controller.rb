@@ -1,10 +1,6 @@
-class PagesController < ApplicationController
-  def project_2
-  end
-  def calendar
-  end
-  
-    before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+class AppointmentsController < ApplicationController
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  skip_before_filter  :verify_authenticity_token
 
   # GET /appointments
   # GET /appointments.json
@@ -28,7 +24,7 @@ class PagesController < ApplicationController
 
   # POST /appointments
   # POST /appointments.json
-  def create
+  def create 
     @appointment = Appointment.new(appointment_params)
 
     respond_to do |format|
@@ -76,5 +72,4 @@ class PagesController < ApplicationController
     def appointment_params
       params.require(:appointment).permit(:year, :month, :day, :time, :description)
     end
-  
 end
