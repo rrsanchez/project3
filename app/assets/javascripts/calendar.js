@@ -111,7 +111,7 @@ while (i <= dayAmount){
 $.getJSON("/appointments",function(data){
 	for (var i=0; i<data.length; i++) {
 		if(data[i].year == year && data[i].month-1 == month){
-			$("#ul_"+data[i].day).append(data[i].time + "<br>" + data[i].description);
+			$("#ul_"+data[i].day).append(data[i].time + " " + data[i].description + "<br>");
 		}
 	}
 });	
