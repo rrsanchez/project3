@@ -3,28 +3,28 @@
 <table>
   <thead>
     <tr>
-      <th>Year</th>
-      <th>Month</th>
-      <th>Day</th>
-      <th>Time</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th width=70>Year     </th>
+      <th width=70>Month     </th>
+      <th width=50>Day     </th>
+      <th width=70>Time     </th>
+      <th width=200>Description     </th>
+      <th width=35></th>
+      <th width=40></th>
+      <th width=40></th>
     </tr>
   </thead>
 
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.year %></td>
-        <td><%= appointment.month %></td>
-        <td><%= appointment.day %></td>
-        <td><%= appointment.time %></td>
-        <td><%= appointment.description %></td>
-        <td><%= link_to 'Show', appointment %></td>
-        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td align=center><%= appointment.year %>     </td>
+        <td align=center><%= appointment.month %>     </td>
+        <td align=center><%= appointment.day %>     </td>
+        <td align=center><%= appointment.time %>     </td>
+        <td align=center><%= appointment.description %>     </td>
+        <td align=center><%= link_to 'Show', appointment %>     </td>
+        <td align=center><%= link_to 'Edit', edit_appointment_path(appointment) %>     </td>
+        <td align=center><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %>     </td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Appointment', new_appointment_path %>
+
